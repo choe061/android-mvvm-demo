@@ -1,12 +1,11 @@
 package com.example.mvvmapp.viewmodel;
 
-import android.content.Context;
 import android.databinding.BaseObservable;
 import android.databinding.ObservableArrayList;
 import android.util.Log;
 
 import com.example.mvvmapp.BR;
-import com.example.mvvmapp.model.api.UserApi;
+import com.example.mvvmapp.model.repository.api.UserApi;
 import com.example.mvvmapp.model.domain.User;
 import com.example.mvvmapp.network.ApiCallback;
 

@@ -1,4 +1,4 @@
-package com.example.mvvmapp.model.api;
+package com.example.mvvmapp.model.repository.api;
 
 import com.example.mvvmapp.model.domain.Repository;
 import com.example.mvvmapp.network.ApiCallback;

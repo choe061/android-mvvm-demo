@@ -1,7 +1,7 @@
-package com.example.mvvmapp.model.request;
+package com.example.mvvmapp.model.repository.request;
 
 
-import com.example.mvvmapp.model.api.RepositoryApi;
+import com.example.mvvmapp.model.repository.api.RepositoryApi;
 import com.example.mvvmapp.model.domain.Repository;
 import com.example.mvvmapp.network.ApiCallback;
 import com.example.mvvmapp.network.NetModule;

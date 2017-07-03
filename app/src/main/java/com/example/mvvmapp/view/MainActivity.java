@@ -13,7 +13,7 @@ import com.bumptech.glide.RequestManager;
 import com.example.mvvmapp.R;
 import com.example.mvvmapp.adapter.GithubUserRecyclerAdapter;
 import com.example.mvvmapp.databinding.ActivityMainBinding;
-import com.example.mvvmapp.model.request.UserApiRequest;
+import com.example.mvvmapp.model.repository.request.UserApiRequest;
 import com.example.mvvmapp.viewmodel.UserViewModel;
 import com.example.mvvmapp.viewmodel.UsersViewModel;
 
