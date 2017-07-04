@@ -1,7 +1,6 @@
 package com.example.mvvmapp.adapter;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
@@ -14,7 +13,7 @@ import com.bumptech.glide.RequestManager;
 import com.example.mvvmapp.R;
 import com.example.mvvmapp.adapter.viewholder.BindingViewHolder;
 import com.example.mvvmapp.databinding.RvMainItemBinding;
-import com.example.mvvmapp.viewmodel.UserViewModel;
+import com.example.mvvmapp.viewmodel.user.UserViewModel;
 
 import java.util.ArrayList;
 

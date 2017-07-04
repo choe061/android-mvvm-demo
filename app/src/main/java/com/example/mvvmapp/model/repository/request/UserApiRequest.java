@@ -27,14 +27,6 @@ public class UserApiRequest implements UserApi {
                 .subscribe(callback::onSuccess, throwable -> callback.onError(throwable.getMessage()));
     }
 
-    //error 처리를 어디서
-    public Observable<ArrayList<User>> requestGetGithubUsers2() {
-        Observable<Response<ArrayList<User>>> users = NetModule.getHttpService().getGithubUsers();
-        return users.subscribeOn(Schedulers.newThread())
-                .observeOn(AndroidSchedulers.mainThread())
-                .map(Response::body);
-    }
-
     @Override
     public Disposable requestGetGithubUser(String userID, ApiCallback<Response<User>> callback) {
         Observable<Response<User>> user = NetModule.getHttpService().getGithubUser(userID);

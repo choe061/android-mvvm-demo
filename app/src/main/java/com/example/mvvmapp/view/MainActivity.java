@@ -14,8 +14,8 @@ import com.example.mvvmapp.R;
 import com.example.mvvmapp.adapter.GithubUserRecyclerAdapter;
 import com.example.mvvmapp.databinding.ActivityMainBinding;
 import com.example.mvvmapp.model.repository.request.UserApiRequest;
-import com.example.mvvmapp.viewmodel.UserViewModel;
-import com.example.mvvmapp.viewmodel.UsersViewModel;
+import com.example.mvvmapp.viewmodel.user.UserViewModel;
+import com.example.mvvmapp.viewmodel.user.UsersViewModel;
 
 import java.util.ArrayList;
 

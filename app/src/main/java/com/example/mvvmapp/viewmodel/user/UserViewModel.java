@@ -1,4 +1,4 @@
-package com.example.mvvmapp.viewmodel;
+package com.example.mvvmapp.viewmodel.user;
 
 import android.databinding.BaseObservable;
 import android.databinding.ObservableField;

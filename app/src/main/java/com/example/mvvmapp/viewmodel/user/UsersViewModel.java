@@ -1,4 +1,4 @@
-package com.example.mvvmapp.viewmodel;
+package com.example.mvvmapp.viewmodel.user;
 
 import android.databinding.BaseObservable;
 import android.databinding.ObservableArrayList;
@@ -8,6 +8,7 @@ import com.example.mvvmapp.BR;
 import com.example.mvvmapp.model.repository.api.UserApi;
 import com.example.mvvmapp.model.domain.User;
 import com.example.mvvmapp.network.ApiCallback;
+import com.example.mvvmapp.viewmodel.BaseViewModel;
 
 import java.util.ArrayList;
 
@@ -22,6 +23,8 @@ import retrofit2.Response;
  * 뷰모델은 액티비티, 프래그먼트 같은 안드로이드 뷰들에 대한 레퍼런스를 가지지 않는다. (MVP와 가장 큰 차이점)
  *
  * 데이터가 변경될때 이를 알려주는 기능을 데이터 객체에 부여한다.
+ *
+ * ViewModel을 기능별로 패키징
  */
 
 public class UsersViewModel extends BaseObservable implements BaseViewModel {
