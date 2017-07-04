@@ -6,7 +6,7 @@
     <data>
         <variable
             name="model"
-            type="com.example.mvvmapp.viewmodel.UsersViewModel"/>
+            type="com.example.mvvmapp.viewmodel.user.UsersViewModel"/>
         <variable
             name="view"
             type="com.example.mvvmapp.view.MainActivity"/>

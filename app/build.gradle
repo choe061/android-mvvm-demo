@@ -39,7 +39,6 @@ dependencies {
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     compile 'com.squareup.retrofit2:retrofit:' + rootProject.retrofitVersion;
     compile 'com.squareup.retrofit2:converter-gson:' + rootProject.retrofitVersion;
-    compile 'com.jakewharton:butterknife:' + rootProject.butterknifeVersion;
 //    compile 'android.arch.lifecycle:extensions:' + rootProject.archLifecycleVersion;
     compile 'com.jakewharton.retrofit:retrofit2-rxjava2-adapter:1.0.0'
     compile 'io.reactivex.rxjava2:rxjava:2.1.0'
@@ -47,6 +46,4 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     compile 'jp.wasabeef:glide-transformations:2.0.2'
     compile 'org.projectlombok:lombok:1.16.16'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:' + rootProject.butterknifeVersion;
-//    annotationProcessor "android.arch.lifecycle:compiler:" + rootProject.archLifecycleVersion;
 }

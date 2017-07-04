@@ -1,6 +1,7 @@
 package com.example.mvvmapp.view;
 
 import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getName();
 
     private UsersViewModel usersViewModel;
-    @SuppressLint("StaticFieldLeak") private static RequestManager requestManager;
+    @SuppressLint("StaticFieldLeak") static RequestManager requestManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,6 +78,14 @@ public class MainActivity extends AppCompatActivity {
         binding.setView(this);
         binding.setListener(position -> {
             Toast.makeText(this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+//            final UserDialog userDialog = new UserDialog(this, requestManager);
+//            userDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+//                @Override
+//                public void onShow(DialogInterface dialog) {
+//                    userDialog.setDialogText(user);
+//                }
+//            });
+//            userDialog.show();
         });
 
         requestManager = Glide.with(this);
