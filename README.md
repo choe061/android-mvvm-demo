@@ -6,7 +6,6 @@ Android MVVM Demo
 
 ## 1. DataBinding
 * ButterKnife를 대체하는 뷰 바인딩 라이브러리(Android 2.1(API 레벨 7 이상) 사용가능)
-* ButterKnife는 Reflection을 사용, DataBinding은 Annotation Processing을 사용
 * MVVM에 데이터바인딩을 사용하여 개발 시 View에 대한 종속성을 줄인다.
 
 ## 2. MVP의 문제
