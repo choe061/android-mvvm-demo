@@ -2,11 +2,13 @@ package com.example.mvvmapp.view;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.databinding.BindingAdapter;
 import android.databinding.DataBindingUtil;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -24,30 +26,28 @@ import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 public class UserDialog extends Dialog {
 
-    private Activity activity;
+    private Context context;
     private UserViewModel userViewModel;
     private String userID;
 
-    public UserDialog(@NonNull Activity activity) {
-        super(activity);
-        this.activity = activity;
+    public UserDialog(Context context, String userID) {
+        super(context);
+        this.context = context;
+        this.userID = userID;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        userViewModel = new UserViewModel(new UserApiRequest());
-        ActivityMainUserDialogBinding binding = DataBindingUtil.setContentView(activity, R.layout.activity_main_user_dialog);
+        userViewModel = new UserViewModel(new UserApiRequest(), userID);
+        userViewModel.onCreate();
+        ActivityMainUserDialogBinding binding = DataBindingUtil.inflate(
+                LayoutInflater.from(context), R.layout.activity_main_user_dialog, null, false);
+        setContentView(binding.getRoot());
         binding.setUser(userViewModel);
         binding.setView(this);
-    }
 
-    public void setDialogText(User user) {
-//        userID = user.getLogin();
-//        requestManager.load(user.getAvatar_url())
-//                .placeholder(R.drawable.default_profile_img)
-//                .bitmapTransform(new CropCircleTransformation(getContext()))
-//                .into(profile_img);
+        userViewModel.onResume();
     }
 
     public void startRepositoryActivity(View view) {
@@ -57,6 +57,7 @@ public class UserDialog extends Dialog {
     }
 
     public void cancelClick(View view) {
+        userViewModel.onDestroy();
         this.cancel();
     }
 

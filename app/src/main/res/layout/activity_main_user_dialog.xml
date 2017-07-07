@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
@@ -17,7 +16,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@android:color/white"
-        android:layout_margin="30dp">
+        android:padding="30dp"><!-- margin은 적용 안됨, padding은 적용됨 -->
 
         <TextView
             android:layout_width="wrap_content"
@@ -128,7 +127,7 @@
                 android:id="@+id/_followers"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{user.followers}"/>
+                android:text="@{Integer.toString(user.followers)}"/>
 
         </LinearLayout>
 
@@ -152,7 +151,7 @@
                 android:id="@+id/following"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{user.following}"/>
+                android:text="@{Integer.toString(user.following)}"/>
 
         </LinearLayout>
 

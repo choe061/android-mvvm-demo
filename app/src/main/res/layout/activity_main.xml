@@ -10,9 +10,6 @@
         <variable
             name="view"
             type="com.example.mvvmapp.view.MainActivity"/>
-        <variable
-            name="listener"
-            type="com.example.mvvmapp.widget.OnItemClickListener"/>
     </data>
 
     <LinearLayout

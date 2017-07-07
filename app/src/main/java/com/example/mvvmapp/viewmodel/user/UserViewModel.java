@@ -4,10 +4,13 @@ import android.databinding.BaseObservable;
 import android.databinding.ObservableField;
 import android.util.Log;
 
+import com.android.databinding.library.baseAdapters.BR;
 import com.example.mvvmapp.model.domain.User;
 import com.example.mvvmapp.model.repository.api.UserApi;
 import com.example.mvvmapp.network.ApiCallback;
 import com.example.mvvmapp.viewmodel.BaseViewModel;
+
+import java.util.ArrayList;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -33,6 +36,7 @@ public class UserViewModel extends BaseObservable implements BaseViewModel {
     public final ObservableField<String> updated_at = new ObservableField<>();
 
     private UserApi userApi;
+    private String userID;
     private CompositeDisposable compositeDisposable;
 
     public UserViewModel(String login, String id, String avatar_url) {
@@ -41,8 +45,9 @@ public class UserViewModel extends BaseObservable implements BaseViewModel {
         this.avatar_url.set(avatar_url);
     }
 
-    public UserViewModel(UserApi userApi) {
+    public UserViewModel(UserApi userApi, String userID) {
         this.userApi = userApi;
+        this.userID = userID;
     }
 
     public UserViewModel(UserApi userApi, String login, String id, String avatar_url, String name,
@@ -69,7 +74,7 @@ public class UserViewModel extends BaseObservable implements BaseViewModel {
 
     @Override
     public void onResume() {
-
+        requestGetGithubUser(userID);
     }
 
     @Override
@@ -82,19 +87,35 @@ public class UserViewModel extends BaseObservable implements BaseViewModel {
         compositeDisposable.dispose();
     }
 
-    public void requestGetGithubUser(String userID) {
+    private void requestGetGithubUser(String userID) {
         Disposable disposable = userApi.requestGetGithubUser(userID, new ApiCallback<Response<User>>() {
             @Override
             public void onSuccess(Response<User> model) {
                 Log.d(TAG, String.valueOf(model));
-//                view.showDialog(model.body());
+                changeUsersDataSet(model.body());
             }
 
             @Override
             public void onError(String msg) {
+                Log.e(TAG, msg);
 //                view.showToast("유저 정보를 가져오지 못했습니다.");
             }
         });
         compositeDisposable.add(disposable);
+    }
+
+    private void changeUsersDataSet(User user) {
+        this.login.set(user.getLogin());
+        this.id.set(String.valueOf(user.getId()));
+        this.avatar_url.set(user.getAvatar_url());
+
+        this.name.set(user.getName());
+        this.company.set(user.getCompany());
+        this.followers.set(user.getFollowers());
+        this.following.set(user.getFollowing());
+        this.created_at.set(user.getCreated_at());
+        this.updated_at.set(user.getUpdated_at());
+
+        notifyPropertyChanged(BR.user);
     }
 }

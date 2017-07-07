@@ -67,7 +67,10 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getName();
 
     private UsersViewModel usersViewModel;
-    @SuppressLint("StaticFieldLeak") static RequestManager requestManager;
+    @SuppressLint("StaticFieldLeak")
+    static GithubUserRecyclerAdapter adapter;
+    @SuppressLint("StaticFieldLeak")
+    static RequestManager requestManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,9 +79,9 @@ public class MainActivity extends AppCompatActivity {
         ActivityMainBinding binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.setModel(usersViewModel);
         binding.setView(this);
-        binding.setListener(position -> {
-            Toast.makeText(this, String.valueOf(position), Toast.LENGTH_SHORT).show();
-//            final UserDialog userDialog = new UserDialog(this, requestManager);
+//        binding.setListener(position -> {
+//            Toast.makeText(this, String.valueOf(position), Toast.LENGTH_SHORT).show();
+//            final UserDialog userDialog = new UserDialog(this);
 //            userDialog.setOnShowListener(new DialogInterface.OnShowListener() {
 //                @Override
 //                public void onShow(DialogInterface dialog) {
@@ -86,9 +89,10 @@ public class MainActivity extends AppCompatActivity {
 //                }
 //            });
 //            userDialog.show();
-        });
+//        });
 
         requestManager = Glide.with(this);
+        adapter = new GithubUserRecyclerAdapter(requestManager);
     }
 
     @Override
@@ -111,9 +115,7 @@ public class MainActivity extends AppCompatActivity {
 
     @BindingAdapter({"items"})
     public static void setUsers(RecyclerView recyclerView, ArrayList<UserViewModel> users) {
-        GithubUserRecyclerAdapter adapter;
         if (recyclerView.getAdapter() == null) {
-            adapter = new GithubUserRecyclerAdapter(requestManager);
             recyclerView.setAdapter(adapter);
         } else {
             adapter = (GithubUserRecyclerAdapter) recyclerView.getAdapter();

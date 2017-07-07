@@ -1,6 +1,9 @@
 package com.example.mvvmapp.adapter;
 
 import android.annotation.SuppressLint;
+import android.app.Activity;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.databinding.BindingAdapter;
 import android.graphics.drawable.Drawable;
 import android.support.v7.widget.RecyclerView;
@@ -8,12 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.RequestManager;
 import com.example.mvvmapp.R;
 import com.example.mvvmapp.adapter.viewholder.BindingViewHolder;
 import com.example.mvvmapp.databinding.RvMainItemBinding;
+import com.example.mvvmapp.view.UserDialog;
 import com.example.mvvmapp.viewmodel.user.UserViewModel;
+import com.example.mvvmapp.widget.OnItemClickListener;
 
 import java.util.ArrayList;
 
@@ -31,6 +37,7 @@ public class GithubUserRecyclerAdapter extends RecyclerView.Adapter<BindingViewH
     private static RequestManager requestManager;
 
     private ArrayList<UserViewModel> users = new ArrayList<>();
+    private Context context;
 
     public GithubUserRecyclerAdapter(RequestManager requestManager) {
         GithubUserRecyclerAdapter.requestManager = requestManager;
@@ -38,7 +45,8 @@ public class GithubUserRecyclerAdapter extends RecyclerView.Adapter<BindingViewH
 
     @Override
     public BindingViewHolder<RvMainItemBinding> onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
+        context = parent.getContext();
+        View view = LayoutInflater.from(context)
                 .inflate(R.layout.rv_main_item, parent, false);
         return new BindingViewHolder<>(view);
     }
@@ -46,6 +54,18 @@ public class GithubUserRecyclerAdapter extends RecyclerView.Adapter<BindingViewH
     @Override
     public void onBindViewHolder(BindingViewHolder<RvMainItemBinding> holder, int position) {
         holder.binding().setUser(users.get(position));
+        holder.binding().setListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final UserDialog userDialog = new UserDialog(context, String.valueOf(v.getTag()));
+                userDialog.setOnShowListener(new DialogInterface.OnShowListener() {
+                    @Override
+                    public void onShow(DialogInterface dialog) {
+                    }
+                });
+                userDialog.show();
+            }
+        });
     }
 
     @Override
