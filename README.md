@@ -34,11 +34,16 @@ BaseViewModel doesn't have any knowledge of it View.<br/>
 * <code>Model</code>, <code>View</code>, <code>ViewModel</code> (이 외 adapter, network, widget)으로 구성
 
 #### 4-1. Model
-* MVP의 Model과 동일
+* MVP의 Model과 동일하여 Data와 관련된 전반적인 처리를 Model에서 담당한다.
 
 #### 4-2. View
-* 
+* 이벤트가 발생하면 ViewModel에 전달한다. View는 ViewModel에 옵저버블 변수의 변경에 따라 바인딩된다.
 
 #### 4-3. ViewModel
+* ViewModel은 Model을 래핑하고 View에 필요한 옵저버블 데이터를 가진다. ViewModel은 특정 View에 종속되지 않고, 여러 View에서 계속 재사용될 수 있다.
 
 #### 4-4. adapter, network, widget
+* adapter : Databinding을 사용함으로서 BindingViewHolder 클래스를 제너릭 클래스로 정의하여 모든 사용자 정의 객체가 바인딩될 수 있도록 정의할 수 있다. ViewHolder 클래스를 하나만 정의하여 사용할 수 있다.
+
+## 5. 처리순서
+1. 
