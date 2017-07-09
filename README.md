@@ -46,4 +46,10 @@ BaseViewModel doesn't have any knowledge of it View.<br/>
 * adapter : Databinding을 사용함으로서 BindingViewHolder 클래스를 제너릭 클래스로 정의하여 모든 사용자 정의 객체가 바인딩될 수 있도록 정의할 수 있다. ViewHolder 클래스를 하나만 정의하여 사용할 수 있다.
 
 ## 5. 처리순서
-1. 
+1. View : 이벤트 발생
+2. View -> ViewModel : ViewModel에 Data 초기화 작업을 요청
+3. ViewModel : 이벤트의 형태에 따라 이벤트를 바로 처리하거나 Model에 데이터를 요청
+4. ViewModel -> Model : 데이터를 요청받음
+5. Model : Local 또는 Remote Repository에서 데이터를 가져옴
+6. Model -> ViewModel : Model로부터 데이터를 받음
+7. ViewModel : Databinding의 Observable변수를 이용하여 View를 업데이트
